@@ -4,9 +4,10 @@ data <- read.csv.sql("household_power_consumption.txt", sql = "select * from fil
 data$Date <- as.Date(data$Date, format="%d/%m/%Y")
 data$datetime <- as.POSIXct(paste(as.Date(data$Date), data$Time))
 
-par(mfrow=c(2,2))
 
-dev.copy(png, file="plot4.png", height=480, width=480)
+
+png(file = "plot4.png", height=480, width=480)
+par(mfrow=c(2,2))
 plot(data$Global_active_power~data$datetime, type="l",ylab="Global Active Power", xlab="")
 plot(data$Voltage~data$datetime, type="l", ylab="Voltage", xlab="datetime")
 plot(data$Sub_metering_1~data$datetime, type="l", ylab="Energy sub metering", xlab="")
